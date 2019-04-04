@@ -23,7 +23,7 @@ on a software development team. You'll...
   - Make changes to the newly created `branch`
   - Create a `pull request` from your new `branch` to the `master` `branch`
 
-### Exercise 1:
+### Exercise 1: Personal Repository
 ---
 #### Step 1:
 **Summary** - We will create a repository on GitHub
@@ -65,7 +65,7 @@ on GitHub.
     > The `init` command creates a hidden folder and files that enable git to start tracking changes
     > within your project directory. many `git` commands will not work if they are not run within a
     > directory that git has been initialized within.
-
+    >
     > See the official documentation for more info: https://git-scm.com/docs/git-init
 
   - Run
@@ -139,11 +139,145 @@ on GitHub.
 
   - Go to the repository on GitHub and see the updates made to your repository.
 
+### Exercise 2: Existing Repository
+---
+
+#### Step 1:
+**Summary** - We will fork this tutorial repository
+
+**Instructions**
+
+  - Scroll to the top of this repository and look for the **fork** button
+    > ![Fork button](images/fork_repo.png)
+
+  - Click the **fork** button
+    > This will copy all of the code from this repository and make an identical repository in your
+    > GitHub account. Because you are not the owner of this repository you would not be able to push
+    > code changes directly to it. A **fork** allows you to make changes to your copy (the fork) and then
+    > make a request to the repository owner to merge those changes.
+
+#### Step 2:
+**Summary** - We will take the forked repository and clone it to our local computer.
+
+**Instructions**
+
+  - Go to the forked version of this repository in your GitHub account. It will be located under the
+  _Repsitories_ tab in you GitHub profile.
+    > ![repositories tab](images/repositories.png)
+
+  - Click the green **clone or Download** button and copy the URL
+    > ![clone or download](images/clone_download.png)
+
+  - Open your terminal and navigate to any directory you can copy files to (Desktop is a good place to practice)
+
+  - Run
+    > ```bash
+    > git clone $REPO_CLONE_URL # $REPO_CLONE_URL would be the URL you copied from GitHub
+    > ```
+    > This _clones_ (copies) the remote repository to your local computer. It will create a new directory and
+    > copy all the files from the remote repository, along with all of the `git` information.
+    > This means you will not need to run `git init` in this cloned directory.
+
+#### Step 2:
+**Summary** - We will make changes to the _cloned_ repository and push the to GitHub.
+
+**Instructions**
+
+  - Open the newly cloned directory in you IDE or code editor
+  - Make a change to a file
+  - Go through the steps outlined in exercise 1, `git {status,diff,add,commit,push}`
+    > Because this repository was cloned we do not have to go throught the step of telling git where
+    > the `remote` is located. Remember `git remote add origin $YOUR_REPOSITORY_URL`. We do not need
+    > to do this in this case because `git clone` sets this for us automatically.
 
 
+### Exercise 3: Collaborating with others
+**Summary** - Practice makes perfect, we will repeat the process of the second exercise and learn a
+few new git commands that help us collaboratively write code.
 
+#### Step 1:
+**Summary** - Re-clone this repository and create a new **branch**
 
+**Instructions**
 
+  - Delete the directory that is the clone of this repository on your local computer.
+  - Re-clone the fork to your computer.
+  - `cd` into the cloned git repository
 
+  - **Context**: Lets say we are responsible for adding a new page to our website. A common workflow utilizing git
+  would involve creating a new **branch** that would contain all of that new work. You're probably wondering
+  why we would want to do that. The idea behind it is that we don't want to pollute the **master** branch
+  with our changes before those changes are finished. This also prevents other team members that are working
+  on our website from having to deal with all the new code we are writing before it is finished.
+  This is extremely valuable to software teams, it makes it much easier for many people to work on the
+  same software at the same time. Now let's create a new branch!
 
+  - Run
+    > ```bash
+    > git branch
+    > ```
+    > This lists all of the **branches** of this repository. The currently active branch will have
+    > an asterisk by it. We aren't going to get too deep into what
+    > exactly branches are in git, but a basic understanding is helpful at this point. You can think
+    > of **branches** like the branches coming off of a tree, the **master** branch can be thought of as the
+    > root of the tree. In most cases branches will be created off of the **master** branch and then
+    > merged back into the **master** branch when the desired changes have been completed. This is
+    > difficult to wrap your mind around at first but becomes more clear after some practice.
+    >
+    > ```bash
+    > git branch add-about-page
+    > ```
+    > This creates a new branch named `add-about-page`
 
+#### Step 2:
+**Summary** - Checkout our new branch and make some changes.
+
+**Instructions**
+  - Run
+    > ```bash
+    > git checkout add-about-page
+    > ```
+    >
+    > This changes the currently active branch to `add-about-page`. At this moment the `master` branch
+    > and `add-about-page` branch are identical, meaning neither contains any changes that the other
+    > branch does not contain. Once we start to modify the `add-about-page` branch we would say that
+    > the `add-about-page` branch is _ahead_ of the `master` branch. Let's now make some changes on
+    > our new branch.
+    >
+    >```bash
+    > touch about.html # create new file
+    > git status # you should see about.html as an untracked file
+    >```
+    >
+    > Now go through the steps in the previous exercises to stage and commit this new file to your branch.
+    > Don't push the branch yet.
+
+  - Once you have committed this new file you'll want to push this branch to your remote repository
+  so you can create a request to merge this new branch back into the **master** branch with your changes.
+  If you try to push this branch right now you'll be met with an error `git push`. You'll notice that
+  git tells you there is no _upstream_ branch for `add-about-page`. I you remember back to previous
+  exercises you may recall that `push` trys to _push_ you local changes to the remote repository.
+  What git is telling you in this case is that the remote repository has no branch named `add-about-page`,
+  so git is not sure what to do. To fix this case we can tell git create the remote branch and set the
+  remote branch as the _upstream_ to our local branch.
+
+  - Run
+    > ```bash
+    > git push --set-upstream origin add-about-page
+    > ```
+
+  - Now your new branch should be visible on GitHub.
+
+#### Step 3:
+**Summary** - Make a pull request from our new branch to the master branch
+
+**Instructions**
+
+  - Our new branch is now on GitHub. Let's create a **pull request** from the new branch to the
+  - Open the page for your fork of this repository on GitHub
+  - Click on the **Pull requests** tab
+  - Click on the green **New pull request** button
+  - Change the **compare** branch to the new `add-about-page` branch
+  - Click green **Create pull request** button
+  - Navigate back to the original repository, go to pull requests and you should see your request there
+  - Congratulations you've created your first pull request
