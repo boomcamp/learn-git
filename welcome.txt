@@ -1,1 +1,1 @@
-Welcoem to learn-git Repository!
+Welcome to learn-git Repository!
