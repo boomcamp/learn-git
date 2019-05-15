@@ -1,2 +1,2 @@
 Welcome developers to learn-git Repository!
-What a nice time to be alive and learn to code.
+What a nice time to be alive and learn to code, yes!
