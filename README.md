@@ -1,3 +1,5 @@
+# Jaako was here
+---
 # Project Summary
 ---
 Get familiar using git and GitHub
@@ -25,7 +27,7 @@ on a software development team. You'll...
 
 ### Exercise 1: Personal Repository
 ---
-#### Step 1:
+#### Step 1(uno):
 **Summary** - We will create a repository on GitHub
 
 **Instructions**
@@ -38,7 +40,7 @@ on a software development team. You'll...
   - Do **NOT** initialize the `repository` with a README
 ---
 
-#### Step 2:
+#### Step 2(dos):
 
 **Summary** - We will connect a **local** `repository` to the **remote** `repository` we just created
 on GitHub.
@@ -87,7 +89,7 @@ on GitHub.
     >
     > See the official documentation for more info: https://git-scm.com/docs/git-remote
 
-#### Step 3:
+#### Step 3(tres):
 
 **Summary** - We push some code from our local repository to our remote repository on GitHub.
 
