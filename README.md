@@ -1,7 +1,7 @@
 # Project Summary
 ---
 Get familiar using git and GitHub
-
+YO ZION
 We'll go through three short exercises to get you comfortable with the workflow you'll be using
 with git in throughout this course.
 
